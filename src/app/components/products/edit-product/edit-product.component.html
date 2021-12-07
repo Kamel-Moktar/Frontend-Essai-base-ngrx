@@ -1,0 +1,59 @@
+
+<div class="container" >
+
+  <form [formGroup]="productFormGroup"  >
+
+
+     <div >
+       <label  class="form-label">ID :</label>
+       <h6>{{productFormGroup.value.id}} </h6>
+     </div>
+    <div class="mb-3 mt-3">
+      <label  class="form-label">Name :</label>
+      <input type="text" class="form-control"   formControlName="name" placeholder="Enter name of product"
+             [ngClass]="{
+             'is-invalid' : productFormGroup.controls['name'].errors,
+             'is-valid'   : !productFormGroup.controls['name'].errors
+              }"
+      >
+      <div *ngIf="productFormGroup.controls['name'].errors" class="text-danger">   - The product name field can not be empty   </div>
+
+    </div>
+
+
+    <div class="mb-3 mt-3">
+      <label  class="form-label">Price :</label>
+      <input type="number" class="form-control"   formControlName="price" placeholder="Enter price of product"
+             [ngClass]="{'is-valid':productFormGroup.controls['price'].errors, 'is-invalid':productFormGroup.controls['price'].errors}"
+      >
+      <div *ngIf="productFormGroup.controls['price'].errors" class="text-danger"> The price must be a number between 0 and 99999</div>
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label  class="form-label">Quantity :</label>
+      <input type="number" class="form-control"  formControlName="quantity" placeholder="Enter quantity of product"
+             [ngClass]="{'is-valid':productFormGroup.controls['quantity'].errors, 'is-invalid':productFormGroup.controls['quantity'].errors}"
+      >
+      <div *ngIf="productFormGroup.controls['quantity'].errors" class="text-danger"> The quantity must be a number between 0 and 99999</div>
+    </div>
+
+
+    <div class="form-check mb-3">
+      <label class="form-check-label">
+        Product is Selected ? <input class="form-check-input"  formControlName="selected" type="checkbox" >
+      </label>
+    </div>
+
+    <div class="form-check mb-3">
+      <label class="form-check-label">
+        Product is Selected ? <input class="form-check-input"  formControlName="available" type="checkbox" >
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary"  (click)="onEditProduct(productFormGroup.value)">Submit</button>
+  </form>
+
+
+</div>
+
+

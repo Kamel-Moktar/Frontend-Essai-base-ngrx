@@ -1,0 +1,67 @@
+<div class="container">
+  <ng-container *ngIf="products$ |  async as result" [ngSwitch]="result.dataStat" >
+    <div *ngSwitchCase="DataStateType.LOADING">
+      ......LOADING !
+    </div>
+    <div *ngSwitchCase="DataStateType.ERROR" class="bg-danger text-white" >
+      {{result.errorMessage}}
+    </div>
+    <div *ngSwitchCase="DataStateType.LOADED" class="pagination">
+
+
+    <table class="table" >
+      <tr >
+        <th>N°</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Selected</th>
+        <th>Available</th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+      </tr>
+      <app-product-item  *ngFor="let p of (result.products) | paginate : { id: 'id',
+                                                      itemsPerPage: rowsPerPAge,
+                                                      currentPage:currentPage
+                                                      } "
+                        [product]="p"
+                         [index]="result.products.indexOf(p)+1"
+                         [currentPage]="currentPage"
+
+
+                        style="display: contents"
+                         class=" justify-content-centre"
+
+      >
+
+      </app-product-item>
+
+    </table>
+    </div >
+    <div class="row">
+    <div class="col  col   p-3"></div>
+    <pagination-controls  id="id" class="col p-3 btn "
+                          (pageChange)="pageChanged($event)"
+                          (pageBoundsCorrection)="pageChanged($event)"
+                          [maxSize]=maxSize
+                          [directionLinks]=true
+                          [autoHide]=false
+                          [responsive]=false
+                          previousLabel="Previous"
+                          nextLabel="Next"
+                          screenReaderPaginationLabel="Pagination"
+                          screenReaderPageLabel="page"
+                          screenReaderCurrentLabel="You're on page"
+
+    >
+    </pagination-controls>
+    <div class="col   p-3"></div>
+
+    </div>
+  </ng-container>
+
+
+
+</div>

@@ -1,0 +1,22 @@
+
+  <nav class="navbar navbar-expand  border">
+    <label class="text-black">ddddd {{login}}</label>
+    <ul>
+      <button class="btn-success m-lg-1" (click)="getAllProduct()" > All </button>
+      <button class="btn-success m-lg-1" (click)="getSelectedProduct()"> Selected  </button>
+      <button class="btn-success m-lg-1" (click)="getAddProduct()"> Add Product </button>
+    </ul>
+    <ul class="navbar navbar-nav m-lg-auto" >
+      <li>
+        <form class="form-check-inline" #f="ngForm"  (ngSubmit)="searchByName(f.value.keyword)"  >
+          <label class="text-white m-lg-1"  >Product name: </label>
+          <input class="small" ngModel  name="keyword" type="text">
+
+          <button class="btn  m-lg-2 btn-sm btn-outline-info">
+            <span class="fa fa-search"></span>
+
+          </button>
+        </form>
+      </li>
+    </ul>
+
